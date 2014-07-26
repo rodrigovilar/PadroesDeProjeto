@@ -14,35 +14,49 @@ import java.util.Properties;
  */
 public class ConexaoBancoDados {
 
-	  private static String driver = "oracle.jdbc.driver.OracleDriver";
-	  private static String urlPrefix = "jdbc:oracle:thin:@//";
-	  private static String address = "10.0.0.1:1521";
-	  private static String schema = "database1";
-	  private static String user = "root";
-	  private static String password = "123";
+	private String driver = "oracle.jdbc.driver.OracleDriver";
+	private String urlPrefix = "jdbc:oracle:thin:@//";
+	private String address = "10.0.0.1:1521";
+	private String schema = "database1";
+	private String user = "root";
+	private String password = "123";
 
-	public static String getDriver() {
+	private static ConexaoBancoDados instance = null;
+
+	private ConexaoBancoDados() {
+	}
+
+	public static ConexaoBancoDados getInstance() {
+		if (instance == null) {
+			// "lazy instantiation"
+			instance = new ConexaoBancoDados();
+		}
+
+		return instance;
+	}
+
+	public String getDriver() {
 		return driver;
 	}
 
-	public static String getURL() {
+	public String getURL() {
 		return urlPrefix + address + schema;
 	}
 
-	public static String getUser() {
+	public String getUser() {
 		return user;
 	}
 
-	public static String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public static void carregarDados(String arquivo) {
+	public void carregarDados(String arquivo) {
 		Properties prop = new Properties();
 
 		try {
 			File file = new File(arquivo);
-			
+
 			if (!file.exists()) {
 				throw new RuntimeException("Nao pode achar arquivo: " + arquivo);
 			}
@@ -61,7 +75,7 @@ public class ConexaoBancoDados {
 		password = prop.getProperty("password", password);
 	}
 
-	public static Connection abrirConexao() throws Exception {
+	public Connection abrirConexao() throws Exception {
 		Class.forName(getDriver());
 
 		return DriverManager.getConnection(getURL(), getUser(), getPassword());

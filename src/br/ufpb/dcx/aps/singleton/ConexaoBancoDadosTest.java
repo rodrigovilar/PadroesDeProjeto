@@ -6,8 +6,8 @@ public class ConexaoBancoDadosTest {
 
 	@Test
 	public void testeProducaoOracle() throws Exception {
-		ConexaoBancoDados.carregarDados("bd_oracle.properties");
-		ConexaoBancoDados.abrirConexao();
+		ConexaoBancoDados.getInstance().carregarDados("bd_oracle.properties");
+		ConexaoBancoDados.getInstance().abrirConexao();
 	}
 
 }
