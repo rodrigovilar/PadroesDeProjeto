@@ -72,6 +72,17 @@ public class ConexaoBancoDados {
 	}
 
 	public void carregarDados(String arquivo) {
+		Properties prop = carregarPropriedades(arquivo);
+
+		driver = prop.getProperty("driver", driver);
+		urlPrefix = prop.getProperty("url.prefix", urlPrefix);
+		address = prop.getProperty("address", address);
+		schema = prop.getProperty("schema", schema);
+		user = prop.getProperty("user", user);
+		password = prop.getProperty("password", password);
+	}
+
+	protected Properties carregarPropriedades(String arquivo) {
 		Properties prop = new Properties();
 
 		try {
@@ -86,13 +97,7 @@ public class ConexaoBancoDados {
 		} catch (Exception ex) {
 			System.err.println(ex.getMessage());
 		}
-
-		driver = prop.getProperty("driver", driver);
-		urlPrefix = prop.getProperty("url.prefix", urlPrefix);
-		address = prop.getProperty("address", address);
-		schema = prop.getProperty("schema", schema);
-		user = prop.getProperty("user", user);
-		password = prop.getProperty("password", password);
+		return prop;
 	}
 
 	public Connection abrirConexao() throws Exception {

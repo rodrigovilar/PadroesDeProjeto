@@ -1,8 +1,5 @@
 package br.ufpb.dcx.aps.singleton;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.Properties;
 
 public class ConexaoBancoDadosHsqldb extends ConexaoBancoDados {
@@ -24,21 +21,9 @@ public class ConexaoBancoDadosHsqldb extends ConexaoBancoDados {
 		setDirectory("db1");
 	}
 
+	@Override
 	public void carregarDados(String arquivo) {
-		Properties prop = new Properties();
-
-		try {
-			File file = new File(arquivo);
-
-			if (!file.exists()) {
-				throw new RuntimeException("Nao pode achar arquivo: " + arquivo);
-			}
-
-			prop.load(new BufferedInputStream(new FileInputStream(file)));
-
-		} catch (Exception ex) {
-			System.err.println(ex.getMessage());
-		}
+		Properties prop = carregarPropriedades(arquivo);
 
 		setDriver(prop.getProperty("driver", getDriver()));
 		setUrlPrefix(prop.getProperty("url.prefix", getUrlPrefix()));
