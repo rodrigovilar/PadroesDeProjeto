@@ -21,9 +21,9 @@ public class ConexaoBancoDados {
 	private String user = "root";
 	private String password = "123";
 
-	private static ConexaoBancoDados instance = null;
+	protected static ConexaoBancoDados instance = null;
 
-	private ConexaoBancoDados() {
+	protected ConexaoBancoDados() {
 	}
 
 	public static ConexaoBancoDados getInstance() {
@@ -49,6 +49,26 @@ public class ConexaoBancoDados {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUrlPrefix(String urlPrefix) {
+		this.urlPrefix = urlPrefix;
+	}
+
+	public String getUrlPrefix() {
+		return urlPrefix;
 	}
 
 	public void carregarDados(String arquivo) {

@@ -10,4 +10,9 @@ public class ConexaoBancoDadosTest {
 		ConexaoBancoDados.getInstance().abrirConexao();
 	}
 
+	@Test
+	public void testeDesenvolvimentoHsqldb() throws Exception {
+		ConexaoBancoDadosHsqldb.getInstance().carregarDados("bd_local.properties");
+		ConexaoBancoDados.getInstance().abrirConexao();
+	}
 }
