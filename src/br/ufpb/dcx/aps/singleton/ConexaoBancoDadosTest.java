@@ -1,9 +1,15 @@
 package br.ufpb.dcx.aps.singleton;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class ConexaoBancoDadosTest {
 
+	@After
+	public void zerarSingleton() {
+		ConexaoBancoDados.getInstance().reset();
+	}
+	
 	@Test
 	public void testeProducaoOracle() throws Exception {
 		ConexaoBancoDados.getInstance().carregarDados("bd_oracle.properties");

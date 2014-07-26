@@ -35,6 +35,10 @@ public class ConexaoBancoDados {
 		return instance;
 	}
 
+	public void reset() {
+		instance = null;
+	}
+
 	public String getDriver() {
 		return driver;
 	}
