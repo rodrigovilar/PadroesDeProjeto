@@ -14,14 +14,15 @@ public class EditorDeTextoTest {
 		editor = new EditorDeTexto();
 		editor.digitar("abc\ndef");
 	}
-	
+
 	@Test
 	public void exportarParaTxt() {
-		assertEquals("abc\ndef\n", editor.exportar(Formato.TXT));
+		assertEquals("abc\ndef\n", editor.exportar(new ExportadorTXT()));
 	}
 
 	@Test
 	public void exportarParaHtml() {
-		assertEquals("<html><body><p>abc</p><p>def</p></body></html>", editor.exportar(Formato.HTML));
+		assertEquals("<html><body><p>abc</p><p>def</p></body></html>",
+				editor.exportar(new ExportadorHTML()));
 	}
 }
