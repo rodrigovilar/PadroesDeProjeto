@@ -15,12 +15,29 @@ public class EditorDeTexto {
 		}
 	}
 
-	public String exportar() {
+	public String exportar(Formato formato) {
+
 		String result = "";
-		for (String p : paragrafos) {
-			result += p + "\n";
+
+		switch (formato) {
+
+		case TXT:
+			for (String p : paragrafos) {
+				result += p + "\n";
+			}
+			return result;
+
+		case HTML:
+			result += "<html><body>";
+			
+			for (String p : paragrafos) {
+				result += "<p>" + p + "</p>";
+			}
+			result += "</body></html>";
+			return result;
 		}
-		return result;
+		
+		return null;
 	}
 
 }
